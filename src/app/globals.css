@@ -17,6 +17,5 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: #ffedd5;
+  background: var(--background-start-rgb);
 }

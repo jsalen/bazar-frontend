@@ -1,6 +1,13 @@
 'use client';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { IconSearch } from '@tabler/icons-react';
+
+export enum SearchParams {
+  LIMIT = 'limit',
+  OFFSET = 'offset',
+  SEARCH = 'search',
+}
 
 export const Search = (): JSX.Element => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -10,24 +17,28 @@ export const Search = (): JSX.Element => {
     e.preventDefault();
 
     if (searchTerm) {
-      push(`/items?search=${searchTerm}`);
+      push(`/items?${SearchParams.SEARCH}=${searchTerm}`);
     }
   };
 
   return (
-    <form className="relative pt-4 max-w-[440px] mx-auto" onSubmit={onSubmit}>
+    <form
+      className="relative pt-4 max-w-[440px] mx-auto"
+      onSubmit={onSubmit}
+      role="search"
+    >
       <label className="sr-only" htmlFor="search">
         Search
       </label>
       <input
         className="pl-3 py-2 w-full rounded-md border border-flame focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-flame"
         type="text"
-        placeholder="iPhone 9"
+        placeholder="Search Bazar"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button className="absolute right-0 bottom-px h-auto py-2 px-3 text-white rounded-r bg-flame">
-        Search
+      <button className="absolute right-0 bottom-px h-auto py-2 px-3 rounded-r bg-flame">
+        <IconSearch className="text-CustomBlack" />
       </button>
     </form>
   );
