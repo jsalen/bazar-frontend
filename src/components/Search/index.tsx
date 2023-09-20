@@ -2,12 +2,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { IconSearch } from '@tabler/icons-react';
-
-export enum SearchParams {
-  LIMIT = 'limit',
-  OFFSET = 'offset',
-  SEARCH = 'search',
-}
+import { SearchParams } from '@/utils/types';
 
 export const Search = (): JSX.Element => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -23,7 +18,7 @@ export const Search = (): JSX.Element => {
 
   return (
     <form
-      className="relative pt-4 max-w-[440px] mx-auto"
+      className="relative max-w-[440px] mx-auto"
       onSubmit={onSubmit}
       role="search"
     >

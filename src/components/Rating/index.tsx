@@ -25,7 +25,9 @@ export const Rating = ({
   return (
     <>
       <Typography
-        className={hiddenLabel === true ? 'sr-only' : undefined}
+        className={
+          hiddenLabel === true ? 'sr-only' : 'text-xs text-lightText font-light'
+        }
         component="legend"
       >
         {label}

@@ -6,12 +6,5 @@ export default function ItemsLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <>
-      <section>
-        <Search />
-      </section>
-      {children}
-    </>
-  );
+  return <>{children}</>;
 }

@@ -1,29 +1,21 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { Rating } from '../Rating';
-
-export interface Product {
-  id: number;
-  title: string;
-  description: string;
-  price: number;
-  discountPercentage: number;
-  rating: number;
-  stock: number;
-  brand: string;
-  category: string;
-  thumbnail: string;
-  images: string[];
-}
+import { Product } from '@/utils/types';
+import { getPriceWithDiscount } from '@/utils';
 
 export const Card = ({ product }: { product: Product }): JSX.Element => {
-  const priceWithDiscount = (
-    product.price -
-    (product.price * product.discountPercentage) / 100
-  ).toFixed(2);
-  const stockIsLow = product.stock < 5;
+  const priceWithDiscount = getPriceWithDiscount({
+    price: product.price,
+    discountPercentage: product.discountPercentage,
+  });
+  const isLowStock = product.stock < 5;
 
   return (
-    <article className="flex gap-2 mb-2 rounded-md border-neutral-100 border-solid border">
+    <Link
+      className="w-full flex gap-2 mb-2 rounded-md border-neutral-100 border-solid border"
+      href={`/items/${product.id}`}
+    >
       <div className="relative min-w-[152px] bg-lightGray flex flex-col justify-center">
         <Image
           alt={product.title}
@@ -51,10 +43,7 @@ export const Card = ({ product }: { product: Product }): JSX.Element => {
             />
           </div>
           <div>
-            <p className="pt-1 text-xl text-customBlack">
-              <span className="text-xs align-middle">$</span>
-              {priceWithDiscount}
-            </p>
+            <p className="pt-1 text-lg text-customBlack">{priceWithDiscount}</p>
             {product.discountPercentage > 0 && (
               <p className="text-xs text-lightText font-light">
                 Typical price:{' '}
@@ -62,13 +51,13 @@ export const Card = ({ product }: { product: Product }): JSX.Element => {
               </p>
             )}
           </div>
-          {stockIsLow && (
+          {isLowStock && (
             <p className="text-red-500 text-xs font-light">
               Only {product.stock} in stock - order soon
             </p>
           )}
         </footer>
       </div>
-    </article>
+    </Link>
   );
 };
