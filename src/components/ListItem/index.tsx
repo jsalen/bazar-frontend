@@ -4,7 +4,7 @@ import { Rating } from '../Rating';
 import { Product } from '@/utils/types';
 import { getPriceWithDiscount } from '@/utils';
 
-export const Card = ({ product }: { product: Product }): JSX.Element => {
+export const ListItem = ({ product }: { product: Product }): JSX.Element => {
   const priceWithDiscount = getPriceWithDiscount({
     price: product.price,
     discountPercentage: product.discountPercentage,

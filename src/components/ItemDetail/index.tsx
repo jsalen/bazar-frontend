@@ -5,6 +5,7 @@ import { Rating } from '../Rating';
 import Image from 'next/image';
 import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import { getPriceWithDiscount } from '@/utils';
+import { Heading } from '../typography/Heading';
 
 export default function ItemDetail({
   description,
@@ -39,7 +40,7 @@ export default function ItemDetail({
               value={rating}
             />
           </div>
-          <h1 className="text-lightText text-2xl lg:text-4xl">{title}</h1>
+          <Heading as="h1">{title}</Heading>
         </header>
         <div className="relative w-full max-w-[1024px] h-[420px] bg-lightGray flex flex-col justify-center shadow lg:max-w-[467px]">
           <Image
