@@ -19,11 +19,11 @@ export default async function Home() {
           collectibles, supporting small businesses and independent artists.
         </p>
       </section>
-      <section className="max-w-[1140px] mx-auto">
+      <section className="max-w-[1140px] mx-auto border-t border-t-gray-200 pt-8">
         <Heading as="h2" className="text-center">
           Featured Products
         </Heading>
-        <div className="py-8 flex flex-col gap-3 lg:flex-row">
+        <div className="py-8 flex flex-col gap-7 lg:flex-row">
           {parsedFeaturedProducts.map((product) => (
             <ListItem key={product.id} product={product} />
           ))}
