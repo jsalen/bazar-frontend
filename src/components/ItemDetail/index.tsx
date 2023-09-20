@@ -30,7 +30,7 @@ export default function ItemDetail({
       <div className="lg:flex lg:flex-row-reverse lg:gap-3 lg:justify-end">
         <header className="pb-3 flex justify-between flex-row-reverse items-center lg:flex-col-reverse lg:justify-end lg:items-start lg:gap-2 lg:pl-4">
           <div className="flex items-center justify-end">
-            <span className="text-cyan-600 text-xs font-normal lg:text-sm">
+            <span className="text-cyan-700 text-xs font-normal lg:text-sm">
               {rating.toFixed(1)}
             </span>
             <Rating

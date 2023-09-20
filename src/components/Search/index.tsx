@@ -32,7 +32,10 @@ export const Search = (): JSX.Element => {
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
       />
-      <button className="absolute right-0 bottom-px h-auto py-2 px-3 rounded-r bg-flame">
+      <button
+        aria-label="Search"
+        className="absolute right-0 bottom-px h-auto py-2 px-3 rounded-r bg-flame"
+      >
         <IconSearch className="text-CustomBlack" />
       </button>
     </form>
