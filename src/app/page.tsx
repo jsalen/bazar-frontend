@@ -20,7 +20,9 @@ export default async function Home() {
         </p>
       </section>
       <section className="max-w-[1140px] mx-auto">
-        <h2 className="text-3xl text-center">Featured Products</h2>
+        <Heading as="h2" className="text-center">
+          Featured Products
+        </Heading>
         <div className="py-8 flex flex-col gap-3 lg:flex-row">
           {parsedFeaturedProducts.map((product) => (
             <ListItem key={product.id} product={product} />

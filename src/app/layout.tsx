@@ -20,14 +20,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={roboto.className}>
-        <header className="max-w-[1140px] mx-auto pt-4 px-4 lg:px-6">
+        <header className="max-w-[1140px] mx-auto pt-4 px-4 lg:px-0">
           <div className="w-full flex items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <Link className="text-lg" href="/">
-                Bazar
-              </Link>
+            <Link className="text-lg flex items-center gap-2" href="/">
+              Bazar
               <IconBuildingStore className="text-3xl" />
-            </div>
+            </Link>
             <div className="w-72">
               <Search />
             </div>
