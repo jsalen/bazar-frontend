@@ -4,6 +4,11 @@ export enum SearchParams {
   SEARCH = 'search',
 }
 
+export enum MediaQueries {
+  TABLET = 768,
+  DESKTOP = 1024,
+}
+
 export interface Product {
   id: number;
   title: string;

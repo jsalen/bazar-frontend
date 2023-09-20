@@ -1,23 +1,27 @@
 'use client';
-import { Product } from '@/utils/types';
+import { MediaQueries, Product } from '@/utils/types';
 import React from 'react';
 import { Rating } from '../Rating';
 import Image from 'next/image';
-import { Accordion, AccordionDetails, AccordionSummary } from '@mui/material';
 import { getPriceWithDiscount } from '@/utils';
 import { Heading } from '../typography/Heading';
+import { Accordion } from '../Accordion';
+import { useWindowWidth } from '@/hooks/useWindowWidth';
 
 export default function ItemDetail({
   description,
   discountPercentage,
+  images,
   price,
   rating,
   stock,
   thumbnail,
   title,
-  images,
 }: Product): JSX.Element {
   const [selectedImage, setSelectedImage] = React.useState(thumbnail);
+  const { windowWidth } = useWindowWidth();
+  const isDesktop = windowWidth > MediaQueries.DESKTOP;
+
   const priceWithDiscount = getPriceWithDiscount({ price, discountPercentage });
   const stockIsLow = stock < 5;
 
@@ -28,7 +32,15 @@ export default function ItemDetail({
   return (
     <article className="max-w-[1140px] mx-auto pt-4 border-t border-lightGray">
       <div className="lg:flex lg:flex-row-reverse lg:gap-3 lg:justify-end">
-        <header className="pb-3 flex justify-between flex-row-reverse items-center lg:flex-col-reverse lg:justify-end lg:items-start lg:gap-2 lg:pl-4">
+        <div className="pb-3 flex justify-between flex-row-reverse items-center lg:flex-col-reverse lg:justify-end lg:items-start lg:gap-2 lg:pl-4">
+          {isDesktop && (
+            <div className="lg:pt-4 lg:flex lg:flex-col lg:gap-2">
+              <Heading as="h2" className="lg:text-xl">
+                Product Description
+              </Heading>
+              <p className="text-base font-light">{description}</p>
+            </div>
+          )}
           <div className="flex items-center justify-end">
             <span className="text-cyan-700 text-xs font-normal lg:text-sm">
               {rating.toFixed(1)}
@@ -41,7 +53,7 @@ export default function ItemDetail({
             />
           </div>
           <Heading as="h1">{title}</Heading>
-        </header>
+        </div>
         <div className="relative w-full max-w-[1024px] h-[420px] bg-lightGray flex flex-col justify-center shadow lg:max-w-[467px]">
           <Image
             alt={title}
@@ -86,16 +98,11 @@ export default function ItemDetail({
           </button>
         </div>
       </div>
-      <footer className="pt-4">
-        <Accordion>
-          <AccordionSummary>
-            <h3 className="text-lightText text-lg">Product Description</h3>
-          </AccordionSummary>
-          <AccordionDetails>
-            <p className="text-lightText text-base">{description}</p>
-          </AccordionDetails>
-        </Accordion>
-      </footer>
+      {!isDesktop && (
+        <div className="pt-4">
+          <Accordion description={description} heading="Product Description" />
+        </div>
+      )}
     </article>
   );
 }
