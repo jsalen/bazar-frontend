@@ -7,8 +7,12 @@ import { getPriceWithDiscount } from '@/utils';
 import { Heading } from '../typography/Heading';
 import { Accordion } from '../Accordion';
 import { useWindowWidth } from '@/hooks/useWindowWidth';
+import { Chip } from '@mui/material';
+import Link from 'next/link';
 
 export default function ItemDetail({
+  brand,
+  category,
   description,
   discountPercentage,
   images,
@@ -32,6 +36,28 @@ export default function ItemDetail({
   return (
     <article className="max-w-[1140px] mx-auto pt-4 border-t border-lightGray">
       <div className="lg:flex lg:flex-row-reverse lg:gap-3 lg:justify-end">
+        {!isDesktop && (
+          <div className={`flex gap-2 ${!isDesktop && 'pb-4'}`}>
+            <Link href={`/items?search=${category}`} passHref>
+              <Chip
+                className="text-customOlive border-customOlive capitalize hover:bg-customOlive hover:text-white transition-all duration-200 ease-in-out cursor-pointer"
+                color="primary"
+                variant="outlined"
+                size="medium"
+                label={category}
+              />
+            </Link>
+            <Link href={`/items?search=${brand}`}>
+              <Chip
+                className="text-customOlive border-customOlive capitalize hover:bg-customOlive hover:text-white transition-all duration-200 ease-in-out cursor-pointer"
+                color="primary"
+                variant="outlined"
+                size="medium"
+                label={brand}
+              />
+            </Link>
+          </div>
+        )}
         <div className="pb-3 flex justify-between flex-row-reverse items-center lg:flex-col-reverse lg:justify-end lg:items-start lg:gap-2 lg:pl-4">
           {isDesktop && (
             <div className="lg:pt-4 lg:flex lg:flex-col lg:gap-2">
@@ -42,17 +68,37 @@ export default function ItemDetail({
             </div>
           )}
           <div className="flex items-center justify-end">
-            <span className="text-cyan-700 text-xs font-normal lg:text-sm">
-              {rating.toFixed(1)}
-            </span>
             <Rating
-              hiddenLabel={true}
+              hiddenLabel={false}
+              label={rating.toFixed(1)}
               readOnly={true}
               size="small"
               value={rating}
             />
           </div>
           <Heading as="h1">{title}</Heading>
+          {isDesktop && (
+            <div className="flex gap-2">
+              <Link href={`/items?search=${category}`} passHref>
+                <Chip
+                  className="text-customOlive border-customOlive capitalize hover:bg-customOlive hover:text-white transition-all duration-200 ease-in-out cursor-pointer"
+                  color="primary"
+                  variant="outlined"
+                  size="medium"
+                  label={category}
+                />
+              </Link>
+              <Link href={`/items?search=${brand}`}>
+                <Chip
+                  className="text-customOlive border-customOlive capitalize hover:bg-customOlive hover:text-white transition-all duration-200 ease-in-out cursor-pointer"
+                  color="primary"
+                  variant="outlined"
+                  size="medium"
+                  label={brand}
+                />
+              </Link>
+            </div>
+          )}
         </div>
         <div className="relative w-full max-w-[1024px] h-[420px] bg-lightGray flex flex-col justify-center shadow lg:max-w-[467px]">
           <Image

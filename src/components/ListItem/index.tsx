@@ -32,11 +32,9 @@ export const ListItem = ({ product }: { product: Product }): JSX.Element => {
         <p className="font-light text-sm line-clamp-2">{product.description}</p>
         <footer>
           <div className="flex items-center gap-1">
-            <span className="text-cyan-700 text-xs font-normal">
-              {product.rating.toFixed(1)}
-            </span>
             <Rating
-              hiddenLabel={true}
+              hiddenLabel={false}
+              label={product.rating.toFixed(1)}
               readOnly={true}
               size="small"
               value={product.rating}

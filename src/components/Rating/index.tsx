@@ -1,5 +1,5 @@
 'use client';
-import { Typography, Rating as RatingUI } from '@mui/material';
+import { Rating as RatingUI } from '@mui/material';
 
 type Rating = {
   className?: string;
@@ -24,14 +24,15 @@ export const Rating = ({
 }: Rating) => {
   return (
     <>
-      <Typography
+      <span
         className={
-          hiddenLabel === true ? 'sr-only' : 'text-xs text-lightText font-light'
+          hiddenLabel === true
+            ? 'sr-only'
+            : 'text-cyan-700 text-xs font-normal lg:text-sm'
         }
-        component="legend"
       >
         {label}
-      </Typography>
+      </span>
       <RatingUI
         className={className}
         name={inputName}
