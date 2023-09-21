@@ -126,10 +126,10 @@ export default function ItemDetail({
         </div>
       </div>
 
-      <div className="py-3 lg:flex lg:justify-end">
+      <div className="pt-6 pb-3 lg:flex lg:justify-end">
         <p className="text-2xl">{priceWithDiscount}</p>
       </div>
-      <div className="py-3 border-y-2 border-lightGray">
+      <div className="py-5 border-y-2 border-lightGray">
         {stockIsLow && (
           <p className="pb-2 text-red-500 text-sm font-bold">
             Only {stock} in stock - order soon.
